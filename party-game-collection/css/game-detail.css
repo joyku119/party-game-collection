@@ -1,0 +1,185 @@
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 0 12px;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--accent-secondary);
+}
+
+.game-hero {
+  padding: 20px 0 32px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.game-hero-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.game-hero-badges {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.game-detail-num {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-secondary);
+}
+
+.game-detail-title {
+  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.game-detail-en {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-top: 4px;
+  margin-bottom: 22px;
+}
+
+.quick-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.fact-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+}
+
+.fact-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.fact-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.game-content {
+  padding: 36px 0 48px;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.content-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.content-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detail-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+.detail-card h2 {
+  font-size: 1.18rem;
+  margin-bottom: 14px;
+  color: var(--accent-secondary);
+}
+
+.detail-card p {
+  color: var(--text-secondary);
+}
+
+.detail-list,
+.detail-steps {
+  padding-left: 20px;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-steps li::marker {
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+.materials-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.material-tag {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+.safety-card {
+  background: rgba(129, 178, 154, 0.08);
+  border: 1px solid rgba(129, 178, 154, 0.28);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.safety-card h3 {
+  font-size: 1rem;
+  color: #b7decb;
+  margin-bottom: 8px;
+}
+
+.safety-card p {
+  font-size: 0.9rem;
+  color: #d6ebe0;
+}
+
+.related-section {
+  padding: 36px 0 20px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.category-hero {
+  padding: 28px 0 32px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 32px;
+}
+
+@media (max-width: 900px) {
+  .game-content {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-facts {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>今晚玩什麼？Party Game Collection｜喝酒聚會小遊戲資料庫</title>
+  <meta name="description" content="收錄 50 款適合朋友聚會、多人派對及酒局的互動小遊戲，支援依聚會人數即時推薦、隨機抽遊戲、分類搜尋與個人收藏。" />
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="assets/icons/favicon.svg" alt="Party Game Collection Logo" />
+        <div class="brand-text">
+          <span class="brand-title">今晚玩什麼？</span>
+          <span class="brand-sub">Party Game Collection</span>
+        </div>
+      </a>
+      <nav class="header-nav" aria-label="主要導覽">
+        <a class="nav-link active" href="index.html">人數推薦</a>
+        <a class="nav-link" href="#categories">六大分類</a>
+        <a class="nav-link" href="#library">全部 50 款</a>
+        <a class="nav-link" href="host.html" style="color: var(--accent-secondary); font-weight: 700;">🎙️ 主持人模式</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn-secondary" href="host.html">🎙️ 主持人模式</a>
+        <button type="button" class="btn btn-ghost" data-open-timer>⏱ 計時器</button>
+        <button type="button" class="btn btn-primary" data-open-random>🎲 不知道玩什麼？</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="hero-eyebrow">PARTY GAME DATABASE · 50 款完整收錄</span>
+          <h1 class="hero-title">
+            今晚玩什麼？
+            <span class="hero-title-en">Party Game Collection — 喝酒聚會必備的小遊戲指南</span>
+          </h1>
+          <p class="hero-desc">
+            收錄 50 款適合朋友聚會、多人派對與酒局的互動小遊戲，整理遊玩人數、所需道具、詳細規則步驟與變化玩法，讓大家不用事先準備，也能快速找到適合當下氣氛的遊戲。
+          </p>
+          <div class="hero-actions">
+            <button type="button" class="btn btn-primary" data-open-random>🎲 不知道玩什麼？隨機抽一款</button>
+            <a class="btn btn-secondary" href="host.html">🎙️ 開啟派對主持人模式</a>
+            <a class="btn btn-ghost" href="#library">瀏覽全部 50 款資料庫</a>
+          </div>
+          <p class="hero-note">
+            💡 專案核心理念：喝酒可以是聚會情境，但遊戲本身不強迫飲酒，皆附有無酒精飲料或趣味替代玩法。
+          </p>
+        </div>
+        <aside class="hero-stats-card" aria-label="資料庫統計">
+          <div class="stats-row">
+            <div class="stat-item">
+              <div class="stat-num" id="totalGamesCount">50</div>
+              <div class="stat-label">收錄派對小遊戲</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">6</div>
+              <div class="stat-label">互動玩法分類</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">25+</div>
+              <div class="stat-label">零道具即開即玩</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">100%</div>
+              <div class="stat-label">無酒精友善替代</div>
+            </div>
+          </div>
+          <div class="hero-safety-badge">
+            🛡️ <strong>聚會安全提示：</strong> 所有懲罰皆可用喝水、飲料、真心話或才藝替代，不鼓勵過量飲酒。
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Player Count Auto Recommender -->
+    <section class="player-recommender-section" id="playerRecommender">
+      <div class="container">
+        <div class="recommender-bar">
+          <div class="recommender-header">
+            <div class="recommender-title-wrap">
+              <h2>👥 今晚有幾個人？手邊有哪些道具？</h2>
+              <p>選擇聚會人數與現場有的工具（撲克牌、骰子、無道具等），系統會立刻跳出最適合的遊戲推薦</p>
+            </div>
+            <div class="player-controls">
+              <div class="player-presets" id="playerPresets" role="group" aria-label="快速選擇人數">
+                <button type="button" class="filter-pill" data-player-preset="2">2 人</button>
+                <button type="button" class="filter-pill" data-player-preset="4">4 人</button>
+                <button type="button" class="filter-pill" data-player-preset="6">6 人</button>
+                <button type="button" class="filter-pill" data-player-preset="8">8 人</button>
+                <button type="button" class="filter-pill" data-player-preset="10">10 人以上</button>
+              </div>
+              <div class="player-stepper" aria-label="自訂人數">
+                <button type="button" class="stepper-btn" id="playerMinusBtn" aria-label="減少人數">−</button>
+                <input type="number" id="playerCountInput" class="player-num-input" min="2" max="20" value="4" aria-label="聚會人數" />
+                <span style="font-size: 0.85rem; color: var(--text-muted);">人</span>
+                <button type="button" class="stepper-btn" id="playerPlusBtn" aria-label="增加人數">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="recommender-tools-row">
+            <span class="tools-label">🎒 手邊工具：</span>
+            <div class="player-presets" id="toolPresets" role="group" aria-label="選擇手邊道具">
+              <button type="button" class="filter-pill active" data-tool-preset="all">不限道具</button>
+              <button type="button" class="filter-pill" data-tool-preset="none">🙌 零道具（免準備）</button>
+              <button type="button" class="filter-pill" data-tool-preset="cards">🃏 撲克牌 / 角色卡</button>
+              <button type="button" class="filter-pill" data-tool-preset="dice">🎲 骰子</button>
+              <button type="button" class="filter-pill" data-tool-preset="phone">📱 手機 / 題庫 / 計時器</button>
+              <button type="button" class="filter-pill" data-tool-preset="paper">✏️ 紙筆 / 便利貼</button>
+              <button type="button" class="filter-pill" data-tool-preset="other">🧃 UNO / 積木 / 杯子</button>
+            </div>
+          </div>
+
+          <div class="recommender-drawer" id="recommenderDrawer" aria-live="polite">
+            <div class="recommender-drawer-top">
+              <p class="recommender-summary" id="recommenderSummary"></p>
+              <div class="recommender-actions">
+                <button type="button" class="btn btn-ghost" id="shuffleRecommendBtn">🔄 換一組推薦</button>
+                <button type="button" class="btn btn-secondary" id="applyPlayerFilterBtn">在下方資料庫看全部符合款 ↓</button>
+                <button type="button" class="btn btn-ghost" id="closeRecommenderBtn" aria-label="收合推薦">✕ 收合</button>
+              </div>
+            </div>
+            <div class="games-grid" id="recommendedGamesGrid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-kicker">Categories</p>
+            <h2 class="section-title">遊戲分類入口</h2>
+          </div>
+          <p class="section-subtitle">依聚會現場人數與氣氛，快速切換不同類型遊戲</p>
+        </div>
+        <div class="categories-grid" id="categoriesGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="featured">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-kicker">Featured Picks</p>
+            <h2 class="section-title">人氣遊戲推薦</h2>
+          </div>
+          <p class="section-subtitle">第一次聚會或不知道怎麼破冰時，從這幾款開始最穩</p>
+        </div>
+        <div class="games-grid" id="featuredGamesGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="library">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <p class="section-kicker">Complete Library</p>
+            <h2 class="section-title">全部遊戲資料庫</h2>
+          </div>
+          <span class="results-meta" id="resultsMeta">目前顯示 50 / 50 款遊戲</span>
+        </div>
+        <div class="toolbar">
+          <div class="toolbar-top">
+            <div class="search-box">
+              <input type="search" id="searchInput" class="search-input" placeholder="搜尋遊戲名稱、英文名、道具（如：撲克牌、骰子、無道具）..." aria-label="搜尋遊戲" />
+            </div>
+            <button type="button" id="clearPlayerFilterBtn" class="btn btn-ghost" style="display: none;">✕ 清除人數篩選</button>
+            <button type="button" id="favFilterBtn" class="btn btn-ghost">☆ 只看我的收藏 (<span id="favCountBadge">0</span>)</button>
+          </div>
+          <div class="filter-pills" id="filterPills" role="group" aria-label="分類篩選"></div>
+        </div>
+        <div class="games-grid" id="allGamesGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>今晚玩什麼？Party Game Collection · 依 <code>AGENTS.md</code> 規範建置與持續擴充</p>
+      <p>理性聚會、尊重彼此界線，飲酒不作為強制任務。</p>
+    </div>
+  </footer>
+
+  <!-- Random Game Modal -->
+  <div class="modal-backdrop" id="randomModal" role="dialog" aria-modal="true" aria-labelledby="randomModalTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close" data-close-modal aria-label="關閉視窗">✕</button>
+      <p class="modal-kicker" id="randomModalCategory">01 · 反應力挑戰</p>
+      <h2 class="modal-title" id="randomModalTitle">遊戲名稱</h2>
+      <p class="modal-subtitle" id="randomModalEn">English Name</p>
+      <p class="modal-desc" id="randomModalDesc"></p>
+      <div class="game-meta" style="border-top: 1px solid var(--border-subtle); padding-top: 14px; margin-bottom: 10px;">
+        <span class="meta-chip" id="randomModalPlayers"></span>
+        <span class="meta-chip" id="randomModalDuration"></span>
+        <span class="meta-chip" id="randomModalMaterials"></span>
+      </div>
+      <div class="modal-start-box">
+        <strong>🚀 開始方式（第一步這樣玩）</strong>
+        <span id="randomModalStart"></span>
+      </div>
+      <div class="modal-actions">
+        <a id="randomModalLink" class="btn btn-primary" href="#">查看完整規則步驟 →</a>
+        <button type="button" id="rerollRandomBtn" class="btn btn-secondary">🎲 再抽一款</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Party Countdown Timer Modal -->
+  <div class="modal-backdrop" id="timerModal" role="dialog" aria-modal="true" aria-labelledby="timerModalTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close" data-close-modal aria-label="關閉計時器">✕</button>
+      <p class="modal-kicker">Party Timer</p>
+      <h2 class="modal-title" id="timerModalTitle">聚會倒數計時器</h2>
+      <p class="modal-desc" style="margin-bottom: 8px;">適合比手畫腳、大家來找碴、五秒定律、詞語接龍等限時挑戰。</p>
+      <div class="timer-display" id="timerDisplay">01:00</div>
+      <div class="timer-presets">
+        <button type="button" class="filter-pill" data-timer-sec="5">5 秒</button>
+        <button type="button" class="filter-pill" data-timer-sec="15">15 秒</button>
+        <button type="button" class="filter-pill" data-timer-sec="30">30 秒</button>
+        <button type="button" class="filter-pill" data-timer-sec="60">60 秒</button>
+        <button type="button" class="filter-pill" data-timer-sec="180">3 分鐘</button>
+      </div>
+      <div class="timer-controls">
+        <button type="button" id="timerStartBtn" class="btn btn-primary">開始計時</button>
+        <button type="button" id="timerResetBtn" class="btn btn-secondary">重設</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/games.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/filter.js"></script>
+  <script src="js/random.js"></script>
+</body>
+</html>

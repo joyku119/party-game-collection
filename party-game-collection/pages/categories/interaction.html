@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>默契與互動（Bonding &amp; Interaction）｜今晚玩什麼？Party Game Collection</title>
+  <meta name="description" content="深入彼此的生活故事與隱藏秘密，在輕鬆提問中拉近距離，認識朋友的另一面。" />
+  <link rel="icon" type="image/svg+xml" href="../../assets/icons/favicon.svg" />
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/game-detail.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../../index.html">
+        <img class="brand-mark" src="../../assets/icons/favicon.svg" alt="Party Game Collection Logo" />
+        <div class="brand-text">
+          <span class="brand-title">今晚玩什麼？</span>
+          <span class="brand-sub">Party Game Collection</span>
+        </div>
+      </a>
+      <nav class="header-nav" aria-label="主要導覽">
+        <a class="nav-link" href="../../index.html">遊戲資料庫</a>
+        <a class="nav-link active" href="interaction.html">默契與互動</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="btn btn-ghost" data-open-timer>⏱ 計時器</button>
+        <a class="btn btn-secondary" href="../../index.html#library">← 返回全部遊戲</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="麵包屑導覽">
+        <a href="../../index.html">首頁</a><span>/</span><span>分類：默契與互動</span>
+      </nav>
+      <section class="category-hero">
+        <div class="game-hero-badges" style="margin-bottom: 10px;">
+          <span style="font-size: 1.6rem;">🤝</span>
+          <span class="badge-cat">考驗朋友之間的了解</span>
+        </div>
+        <h1 class="game-detail-title">默契與互動</h1>
+        <p class="game-detail-en">Bonding &amp; Interaction</p>
+        <p class="hero-desc" style="margin-bottom: 0;">深入彼此的生活故事與隱藏秘密，在輕鬆提問中拉近距離，認識朋友的另一面。</p>
+      </section>
+      <section class="section" style="padding-top: 0;">
+        <div class="games-grid" id="categoryGamesGrid" data-category-id="interaction"></div>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>今晚玩什麼？Party Game Collection · 依 <code>AGENTS.md</code> 規範建置</p>
+      <p>理性聚會、尊重彼此界線，飲酒不作為強制任務。</p>
+    </div>
+  </footer>
+  <div class="modal-backdrop" id="timerModal" role="dialog" aria-modal="true" aria-labelledby="timerModalTitle">
+    <div class="modal-card">
+      <button type="button" class="modal-close" data-close-modal aria-label="關閉計時器">✕</button>
+      <p class="modal-kicker">Party Timer</p>
+      <h2 class="modal-title" id="timerModalTitle">聚會倒數計時器</h2>
+      <p class="modal-desc" style="margin-bottom: 8px;">適合比手畫腳、大家來找碴、詞語接龍等限時挑戰。</p>
+      <div class="timer-display" id="timerDisplay">01:00</div>
+      <div class="timer-presets">
+        <button type="button" class="filter-pill" data-timer-sec="15">15 秒</button>
+        <button type="button" class="filter-pill" data-timer-sec="30">30 秒</button>
+        <button type="button" class="filter-pill" data-timer-sec="60">60 秒</button>
+        <button type="button" class="filter-pill" data-timer-sec="180">3 分鐘</button>
+      </div>
+      <div class="timer-controls">
+        <button type="button" id="timerStartBtn" class="btn btn-primary">開始計時</button>
+        <button type="button" id="timerResetBtn" class="btn btn-secondary">重設</button>
+      </div>
+    </div>
+  </div>
+  <script src="../../js/games.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

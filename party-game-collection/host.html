@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Party Host｜派對主持人模式｜今晚玩什麼？Party Game Collection</title>
+  <meta name="description" content="派對主持人專屬控制台：三步驟帶動整場聚會，整合玩家名單與積分管理、倒數計時器、題目與安全任務抽籤，以及各遊戲專屬控制台。" />
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/host.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="assets/icons/favicon.svg" alt="Party Game Collection Logo" />
+        <div class="brand-text">
+          <span class="brand-title">今晚玩什麼？</span>
+          <span class="brand-sub">Party Game Collection</span>
+        </div>
+      </a>
+      <nav class="header-nav" aria-label="主要導覽">
+        <a class="nav-link" href="index.html">遊戲資料庫</a>
+        <a class="nav-link active" href="host.html">🎙️ 主持人模式</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn-secondary" href="index.html">← 回遊戲資料庫</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="host-hero">
+      <div class="container">
+        <div class="host-hero-top">
+          <div>
+            <span class="hero-eyebrow">HOST MODE · 派對主持人控制台</span>
+            <h1 class="hero-title" style="margin-bottom: 6px;">🎙️ 今晚由我來主持！</h1>
+            <p class="hero-desc" style="margin-bottom: 0;">
+              不用再自己拿紙筆算分或想題目！只要照著下方三個步驟，就能輕鬆帶領整場聚會。
+            </p>
+          </div>
+        </div>
+
+        <div class="host-steps-guide" aria-label="主持人三步驟使用說明">
+          <div class="step-pill">
+            <span class="step-num">1</span>
+            <div>
+              <strong>設定玩家與積分</strong>
+              <p>在左側輸入參與者名字，隨時用 ＋／－ 記錄得分或隨機分隊。</p>
+            </div>
+          </div>
+          <div class="step-pill">
+            <span class="step-num">2</span>
+            <div>
+              <strong>選擇遊戲專屬控制台</strong>
+              <p>挑選要玩的遊戲，系統自動切換發身分、抽題、投票或炸彈工具。</p>
+            </div>
+          </div>
+          <div class="step-pill">
+            <span class="step-num">3</span>
+            <div>
+              <strong>計時與安全任務抽籤</strong>
+              <p>搭配左側倒數計時器與下方抽題／任務抽籤，輸家可隨時安全跳過。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container host-workspace">
+      <!-- Left Sidebar: Step 1 Players + Timer -->
+      <aside class="host-sidebar">
+        <section class="host-card" aria-label="步驟一：玩家名單與積分管理">
+          <div class="host-card-header">
+            <div>
+              <span class="step-badge">STEP 1</span>
+              <h2 class="host-card-title">👥 玩家名單與積分</h2>
+            </div>
+            <span class="badge-cat" id="hostPlayerCountBadge">0 人</span>
+          </div>
+          <p class="card-helper-text">
+            輸入所有人的名字後按下新增；遊戲中可按 <strong>＋ / −</strong> 幫玩家加扣分（比手畫腳答對會自動 +1 分）。
+          </p>
+
+          <div class="host-input-row">
+            <input type="text" id="newPlayerInput" class="host-input" placeholder="輸入玩家名字（如：小明）" aria-label="輸入玩家名字" />
+            <button type="button" id="addPlayerBtn" class="btn btn-primary" style="padding: 9px 16px;">新增</button>
+          </div>
+
+          <div class="player-list-header">
+            <span>玩家順序</span>
+            <span>目前積分 ／ 移除</span>
+          </div>
+          <div class="player-list" id="hostPlayerList"></div>
+
+          <div class="host-btn-grid">
+            <button type="button" id="shufflePlayersBtn" class="btn btn-ghost" title="重新打亂所有玩家的順位">🔀 隨機排順序</button>
+            <button type="button" id="pickRandomPlayerBtn" class="btn btn-ghost" title="隨機選出一位玩家或主持人">🎯 抽一位玩家</button>
+            <button type="button" id="splitTeamsBtn" class="btn btn-ghost" title="將所有玩家隨機平均分成兩隊">⚔️ 隨機分兩隊</button>
+            <button type="button" id="resetScoresBtn" class="btn btn-ghost" title="將所有人的積分重設為 0">🔄 積分歸零</button>
+          </div>
+
+          <div class="host-result-banner" id="playerActionBanner"></div>
+        </section>
+
+        <section class="host-card" aria-label="回合倒數計時器">
+          <div class="host-card-header">
+            <h2 class="host-card-title">⏱ 回合倒數計時器</h2>
+            <span style="font-size: 0.78rem; color: var(--text-muted);">時間到會響鈴提示</span>
+          </div>
+          <div class="host-timer-display" id="hostTimerDisplay">01:00</div>
+          <div class="timer-presets" style="margin-bottom: 12px;">
+            <button type="button" class="filter-pill" data-host-sec="30">30 秒</button>
+            <button type="button" class="filter-pill active" data-host-sec="60">60 秒</button>
+            <button type="button" class="filter-pill" data-host-sec="90">90 秒</button>
+            <button type="button" class="filter-pill" data-host-sec="120">120 秒</button>
+          </div>
+          <div class="timer-controls">
+            <button type="button" id="hostTimerStartBtn" class="btn btn-primary" style="flex: 1;">開始計時</button>
+            <button type="button" id="hostTimerResetBtn" class="btn btn-secondary">重設</button>
+          </div>
+        </section>
+      </aside>
+
+      <!-- Right Main Area: Step 2 Game Console + Step 3 Auxiliary Tools -->
+      <div class="host-main">
+        <!-- Step 2: Game Console -->
+        <section class="host-card" aria-label="步驟二：遊戲專屬主持控制台">
+          <div class="host-card-header" style="margin-bottom: 8px;">
+            <div>
+              <span class="step-badge">STEP 2</span>
+              <h2 class="host-card-title" style="font-size: 1.25rem;">🎮 選擇遊戲專屬主持台</h2>
+            </div>
+          </div>
+          <p class="card-helper-text" style="margin-bottom: 14px;">
+            點擊下方任一款遊戲標籤，即可開啟該遊戲專屬的發牌、出題、計票或回合輔助工具：
+          </p>
+
+          <div class="console-tabs" id="consoleQuickTabs" role="tablist" aria-label="遊戲控制台切換">
+            <button type="button" class="filter-pill active" data-console-tab="werewolf">🐺 狼人殺</button>
+            <button type="button" class="filter-pill" data-console-tab="charades">🎭 比手畫腳</button>
+            <button type="button" class="filter-pill" data-console-tab="most-likely-to">👉 誰最有可能</button>
+            <button type="button" class="filter-pill" data-console-tab="who-is-undercover">🕵️ 誰是臥底</button>
+            <button type="button" class="filter-pill" data-console-tab="number-bomb">💣 數字炸彈</button>
+            <button type="button" class="filter-pill" data-console-tab="generic">🎲 其他 50 款遊戲</button>
+          </div>
+
+          <div class="console-stage" id="consoleStage"></div>
+        </section>
+
+        <!-- Step 3: Auxiliary Tools (Tabbed for cleanliness) -->
+        <section class="host-card" aria-label="步驟三：聚會輔助抽籤工具">
+          <div class="host-card-header" style="flex-wrap: wrap; margin-bottom: 10px;">
+            <div>
+              <span class="step-badge">STEP 3</span>
+              <h2 class="host-card-title" style="font-size: 1.2rem;">🎲 輔助工具：抽題目 ＆ 懲罰任務</h2>
+            </div>
+            <div class="aux-tabs" id="auxTabs">
+              <button type="button" class="filter-pill active" data-aux-tab="questions">❓ 隨機抽題目</button>
+              <button type="button" class="filter-pill" data-aux-tab="challenges">🎯 懲罰任務抽籤</button>
+            </div>
+          </div>
+
+          <!-- Aux Panel 1: Question Generator -->
+          <div class="aux-panel active" id="auxPanelQuestions">
+            <p class="card-helper-text">
+              適用「誰最有可能」、「真心話」、「破冰聊天」等遊戲，可先選主題與尺度避免尷尬：
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+              <select id="questionThemeSelect" class="host-select" style="flex: 1;" aria-label="題目分類">
+                <option value="all">全部主題</option>
+                <option value="朋友日常">朋友日常</option>
+                <option value="感情話題">感情話題</option>
+                <option value="校園回憶">校園回憶</option>
+                <option value="尷尬經歷">尷尬經歷</option>
+                <option value="腦洞大開">腦洞大開</option>
+                <option value="搞笑挑戰">搞笑挑戰</option>
+              </select>
+              <select id="questionLevelSelect" class="host-select" aria-label="題目尺度">
+                <option value="all">不限尺度</option>
+                <option value="mild">輕鬆友善</option>
+                <option value="spicy">微辣刺激</option>
+              </select>
+            </div>
+            <div class="big-prompt-box">
+              <span class="big-prompt-tag" id="questionTag">朋友日常 · 輕鬆</span>
+              <p class="big-prompt-text" id="questionText">誰最有可能在出國前一天晚上才開始收行李？</p>
+            </div>
+            <button type="button" id="nextQuestionBtn" class="btn btn-primary" style="width: 100%;">🎲 抽下一題</button>
+          </div>
+
+          <!-- Aux Panel 2: Challenge Generator -->
+          <div class="aux-panel" id="auxPanelChallenges">
+            <p class="card-helper-text">
+              有人輸掉遊戲時按一下隨機抽任務！全部皆為安全、無酒精的趣味挑戰，不想執行也可直接跳過：
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+              <select id="challengeDiffSelect" class="host-select" style="flex: 1;" aria-label="任務難度">
+                <option value="all">全部難度</option>
+                <option value="Easy">Easy（輕鬆有趣）</option>
+                <option value="Medium">Medium（一點勇氣）</option>
+                <option value="Hard">Hard（創意表演）</option>
+              </select>
+              <select id="challengeTypeSelect" class="host-select" aria-label="任務類型">
+                <option value="all">全部類型</option>
+                <option value="表演挑戰">表演挑戰</option>
+                <option value="口語挑戰">口語挑戰</option>
+                <option value="才藝挑戰">才藝挑戰</option>
+                <option value="反應挑戰">反應挑戰</option>
+                <option value="社交挑戰">社交挑戰</option>
+                <option value="搞笑挑戰">搞笑挑戰</option>
+              </select>
+            </div>
+            <div class="big-prompt-box">
+              <span class="big-prompt-tag" id="challengeTag">表演挑戰 · Easy</span>
+              <p class="big-prompt-text" id="challengeText">模仿一位在場朋友的招牌口頭禪或動作，讓大家猜是誰。</p>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <button type="button" id="nextChallengeBtn" class="btn btn-primary" style="flex: 1;">🎯 抽取任務</button>
+              <button type="button" id="skipChallengeBtn" class="btn btn-ghost">⏭ 跳過（安全免罰）</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>今晚玩什麼？Party Game Collection · Party Host 主持人模式</p>
+      <p>不強迫飲酒，所有任務皆可自由跳過或改以無酒精替代。</p>
+    </div>
+  </footer>
+
+  <script src="js/games.js"></script>
+  <script src="js/host-data.js"></script>
+  <script src="js/host.js"></script>
+</body>
+</html>
